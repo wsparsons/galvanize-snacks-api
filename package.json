@@ -4,7 +4,10 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "nodemon app.js",
+    "start": "node app.js",
+    "setup": "npm i && echo \"SECRET_KEY='secret' \nDATABASE_NAME='galvanizesnacks'\" >> .env && createdb galvanizesnacks && npm run reboot && npm run dev",
+    "reboot": "npm run knex migrate:rollback && npm run knex migrate:latest && npm run knex seed:run"
   },
   "repository": {
     "type": "git",
@@ -18,6 +21,7 @@
   },
   "homepage": "https://github.com/just-hey/galvanize-snacks-api#readme",
   "dependencies": {
+    "cors": "^2.8.4",
     "express": "^4.16.3",
     "knex": "^0.15.2",
     "morgan": "^1.9.0",
