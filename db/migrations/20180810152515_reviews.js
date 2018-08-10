@@ -6,8 +6,6 @@ exports.up = function(knex, Promise) {
       table.integer('rating').notNullable()
       table.integer('snack_id').notNullable()
       table.foreign('snack_id').references('snacks.id').onDelete('CASCADE')
-      table.integer('user_id').notNullable()
-      table.foreign('user_id').references('users.id').onDelete('CASCADE')
     })
   }
   
