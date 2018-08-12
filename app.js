@@ -4,21 +4,20 @@ const app = express()
 const morgan = require('morgan')
 const bodyParser = require('body-parser')
 const port = process.env.PORT || 3000
+const { SnacksRoutes } = require('./routes')
+const processErrorMessage = require('./middleware/errors')
 require('dotenv').config()
 
 app.disable('x-powered-by')
 app.use(morgan('dev'))
 app.use(bodyParser.json())
 
-const processErrorMessage = require('./models/errors')
-
-const { SnacksRoutes } = require('./routes')
 app.use('/snacks', SnacksRoutes)
 
 app.use((req, res) => {
-  const status = 404;
-  const message = `Could not ${req.method} ${req.path}`;
-  res.status(status).json({ status, message });
+  const status = 404
+  const message = `Could not ${req.method} ${req.path}`
+  res.status(status).json({ status, message })
 })
 
 app.use((err, req, res, next) => {

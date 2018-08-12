@@ -3,15 +3,15 @@ const router = express.Router()
 const { SnacksController } = require('../controllers')
 
 
-router.get('/:id', SnacksController.viewItem)
+router.get('/', SnacksController.index)
 
-router.get('/', SnacksController.viewAllCartItems)
+// router.get('/:id', SnacksController.show)
 
-router.post('/', SnacksController.addToCart)
+// router.post('/', SnacksController.create)
 
-router.patch('/:id', SnacksController.update)
+// router.patch('/:id', SnacksController.update)
 
-router.delete('/', SnacksController.removeFromCart)
+// router.delete('/', SnacksController.destroy)
 
 
 module.exports = router
