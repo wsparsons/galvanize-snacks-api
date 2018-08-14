@@ -11,7 +11,7 @@ router.post('/', SnacksController.create)
 
 router.patch('/:id', SnacksController.update)
 
-router.delete('/', SnacksController.destroy)
+router.delete('/:id', SnacksController.destroy)
 
 
 module.exports = router

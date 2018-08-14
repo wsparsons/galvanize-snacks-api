@@ -36,13 +36,20 @@ function update(id, body) {
       if (!snack) throw new Error('snacknotfound')
       return knex('snacks')
         .where({ id })
-        .update(body)
+        .update( body )
         .returning(['*'])    
     })
 }
 
-function destroy() {
-  
+function destroy(id) {
+  return getSnackById(id)
+    .then(snack => {
+      if (!snack) throw new Error('snacknotfound')
+      return knex('snacks')
+        .where({ id })
+        .del()
+        .returning(['*']) 
+    })
 }
 
 
