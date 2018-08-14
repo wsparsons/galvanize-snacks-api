@@ -37,7 +37,7 @@ exports.seed = function(knex, Promise) {
     { id: 34, title: 'Biscotti Bliss!', text: 'Cookie! Me want cookie!', rating: 4, snack_id: 31 },
     { id: 35, title: 'The treat that travels well', text: "I like 'em, and they are great at sea; they don't even need to be salt-packed!", rating: 4, snack_id: 31 },
     { id: 36, title: 'Seriously? Yuck', text: 'I have certainly had sooooo much better.', rating: 1, snack_id: 31 },
-    { id: 37, title: 'Solo! Solo! Too Nakma Noya Solo!', text: 'Han ma boo-kee, keelee ka-lya dooka. Wadja da boolya ra Moy. Han, Mah kee cheezay. Hassatamooma koh kee malyaloongee.', rating: 5, snack_id: 32 }
+    { id: 37, title: 'Solo! Solo! Too Nakma Noya Solo!', text: 'Han ma boo-kee, keelee ka-lya dooka. Wadja da boolya ra Moy. Han, Mah kee cheezay. Hassatamooma koh kee malyaloongee.', rating: 5, snack_id: 31 }
   ])
   .then(() => {
     return knex.raw(`SELECT setval('reviews_id_seq', (SELECT MAX(id) FROM reviews));`)
