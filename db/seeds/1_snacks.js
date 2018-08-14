@@ -1,10 +1,10 @@
 
 exports.seed = function(knex, Promise) {
   // Deletes ALL existing entries
-  return knex('table_name').del()
+  return knex('snacks').del()
     .then(function () {
       // Inserts seed entries
-      return knex('table_name').insert([
+      return knex('snacks').insert([
         {id: 1, name: "Pork Rinds", description: "Mauris lacinia sapien quis libero.", price: 8.44, img: "https://az808821.vo.msecnd.net/content/images/thumbs/0000398_salt-pepper-pork-rinds-2-oz_560.jpeg", is_perishable: true},
         {id: 2, name: "Soup - Campbells Beef Noodle", description: "Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Etiam vel augue. Vestibulum rutrum rutrum neque.", price: 26.37, img: "https://images-na.ssl-images-amazon.com/images/I/71MavWF1P9L._SY550_.jpg", is_perishable: false},
         {id: 3, name: "Pie Filling - Cherry", description: "Fusce posuere felis sed lacus.", price: 3.16, img: "http://wickedgoodkitchen.com/wp-content/uploads/2018/06/Mom%E2%80%99s-Homemade-Tart-Cherry-Pie-Filling.png", is_perishable: false},
@@ -35,7 +35,10 @@ exports.seed = function(knex, Promise) {
         {id: 28, name: "Mushroom - Oyster, Fresh", description: "Morbi ut odio.", price: 27.26, img: "http://stockarch.com/files/13/08/oyster_mushroom_uncooked.jpg", is_perishable: true},
         {id: 29, name: "Rosemary - Primerba, Paste", description: "Nam congue, risus semper porta volutpat, quam pede lobortis ligula, sit amet eleifend pede libero quis orci. Nullam molestie nibh in lectus.", price: 17.18, img: "http://www.food.reaton.ru/glimg/food/0912115L.jpg", is_perishable: false},
         {id: 30, name: "Apple Flavored Scooby Snacks", description: "A caramel-flavored cookie with special munchy-inducing properties. Good at any time, at home or on the go.", price: 8.44, img: "https://www.k9bytesgifts.com/gallery/dog-treat-samples-loose.jpg", is_perishable: false},
-        {id: 31, name: "BB-8's Brownie Balls", description: "Delicious and rollable, these flavorful bites will melt in your mouth without tempting you to join the darkside.", price: 8.44, img: "https://foodsofdiversepopulations.files.wordpress.com/2012/08/brownie-ball-pic1.jpg", is_perishable: false},
-      ]);
-    });
-};
+        {id: 31, name: "BB-8's Brownie Balls", description: "Delicious and rollable, these flavorful bites will melt in your mouth without tempting you to join the darkside.", price: 8.44, img: "https://foodsofdiversepopulations.files.wordpress.com/2012/08/brownie-ball-pic1.jpg", is_perishable: false}
+      ])
+    })
+    .then(() => {
+      return knex.raw(`SELECT setval('snacks_id_seq', (SELECT MAX(id) FROM snacks));`)
+    })
+}
