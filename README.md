@@ -5,10 +5,9 @@
 ![](./images/Snacks-ERD.png)
 
 ## Setup
-
-```shell
-npm run setup
-```
+1. Fork and clone this repository
+1. `cd galvanize-snacks-api/`
+1. `npm run setup`
 
 ## Routes
 
