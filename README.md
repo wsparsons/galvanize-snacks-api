@@ -7,6 +7,7 @@
 ## Setup
 1. Fork and clone this repository
 1. `cd galvanize-snacks-api/`
+1. `createdb galvanizesnacks`
 1. `npm run setup`
 
 ## Routes
@@ -22,11 +23,11 @@ Create a snack
 required fields:
 ```
 {
-    name,           //STRING
-    description,    //STRING
-    price,          //FLOAT
-    img,            //STRING
-    is_perishable   //BOOLEAN
+    name,           // STRING
+    description,    // STRING
+    price,          // FLOAT
+    img,            // STRING
+    is_perishable   // BOOLEAN
 }
 ```
 
@@ -35,9 +36,9 @@ Create a review for a snack
 required fields:
 ```
 {
-	title,          //STRING
-    text,           //STRING
-    rating,         //INTEGER
+	title,          // STRING
+    text,           // STRING
+    rating,         // INTEGER
 }
 ```
 
@@ -46,11 +47,11 @@ Update a snack
 at least one(1) of the following fields is required:
 ```
 {
-    name,           //STRING
-    description,    //STRING
-    price,          //FLOAT
-    img,            //STRING
-    is_perishable   //BOOLEAN
+    name,           // STRING
+    description,    // STRING
+    price,          // FLOAT
+    img,            // STRING
+    is_perishable   // BOOLEAN
 }
 ```
 
@@ -59,9 +60,9 @@ Update a review for a snack
 at least one(1) of the following fields is required:
 ```
 {
-	title,          //STRING
-    text,           //STRING
-    rating,         //INTEGER
+	title,          // STRING
+    text,           // STRING
+    rating,         // INTEGER
 }
 ```
 
