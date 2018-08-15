@@ -31,6 +31,7 @@ function create({ name, description, price, img, is_perishable }){
 }
 
 function update(id, body) {
+  if (!body.name && !body.description && !body.price && !body.img && !body.is_perishable) throw new Error('aFieldRequired')
   return getSnackById(id)
     .then(snack => {
       if (!snack) throw new Error('snacknotfound')
