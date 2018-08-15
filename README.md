@@ -32,7 +32,9 @@ required fields:
 ```
 
 Create a review for a snack
+
 **POST /api/snacks/:id/reviews**
+
 required fields:
 ```
 {
