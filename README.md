@@ -32,7 +32,7 @@
 - required fields in body:
 ```
 {
-	title,          // STRING
+    title,          // STRING
     text,           // STRING
     rating,         // INTEGER
 }
@@ -54,7 +54,7 @@
 - at least one(1) of the following fields in body is required:
 ```
 {
-	title,          // STRING
+    title,          // STRING
     text,           // STRING
     rating,         // INTEGER
 }
