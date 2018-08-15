@@ -9,6 +9,15 @@ function getSnackById(id) {
   return knex('snacks')
     .where({ id })
     .first()
+    .then(async (snack) => {
+      snack.reviews = await getSnackReviews(id)
+      return snack
+    })
+}
+
+function getSnackReviews(id) {
+  return knex('reviews')
+    .where({'snack_id': id})
 }
 
 function show(id) {
