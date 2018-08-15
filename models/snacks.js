@@ -9,23 +9,11 @@ function getSnackById(id) {
   return knex('snacks')
     .where({ id })
     .first()
-    .then(async (snack) => {
-      snack.reviews = await getSnackReviews(id)
-      return snack
-    })
 }
 
 function getSnackReviews(id) {
   return knex('reviews')
-    .where({'snack_id': id})
-}
-
-function show(id) {
-  return getSnackById(id)
-    .then(snack => {
-      if (!snack) throw new Error('snacknotfound')
-      return snack
-    })
+    .where({ 'snack_id': id })
 }
 
 function create({ name, description, price, img, is_perishable }){
@@ -52,15 +40,11 @@ function update(id, body) {
 }
 
 function destroy(id) {
-  return getSnackById(id)
-    .then(snack => {
-      if (!snack) throw new Error('snacknotfound')
-      return knex('snacks')
-        .where({ id })
-        .del()
-        .returning(['*']) 
-    })
+  return knex('snacks')
+    .where({ id })
+    .del()
+    .returning(['*'])
 }
 
 
-module.exports = { index, show, create, update, destroy } 
+module.exports = { index, create, update, destroy, getSnackById } 

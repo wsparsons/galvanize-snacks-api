@@ -8,7 +8,11 @@ function index(req, res, next) {
 }
 
 function show(req, res, next) {
-  snack.show(req.params.id)
+  snack.getSnackById(req.params.id)
+    .then(snack => {
+      if (!snack) throw new Error('snacknotfound')
+      return snack
+    })
     .then(snack => res.status(201).json({ data: snack }))
     .catch(err => next(err))
 }
@@ -26,7 +30,11 @@ function update(req, res, next) {
 }
 
 function destroy(req, res, next) {
-  snack.destroy(req.params.id)
+  snack.getSnackById(req.params.id)
+    .then(found => {
+      if (!found) throw new Error('snacknotfound')     
+      return snack.destroy(req.params.id)
+    })
     .then(snack => res.status(202).json({ data: snack }))    
     .catch(err => next(err)) 
 }
