@@ -12,15 +12,12 @@
 
 ## Routes
 
-- Get ALL snacks
 **GET /api/snacks**
 
-- Get ONE snack via ID will all related reviews
 **GET /api/snacks/:id**
 
-Create a snack 
 **POST /api/snacks**
-- required fields:
+- required fields in body:
 ```
 {
     name,           // STRING
@@ -30,11 +27,9 @@ Create a snack
     is_perishable   // BOOLEAN
 }
 ```
-
-Create a review for a snack
 
 **POST /api/snacks/:id/reviews**
-- required fields:
+- required fields in body:
 ```
 {
 	title,          // STRING
@@ -43,9 +38,8 @@ Create a review for a snack
 }
 ```
 
-Update a snack
 **PATCH /api/snacks/:id**
-at least one(1) of the following fields is required:
+- at least one(1) of the following fields in body is required:
 ```
 {
     name,           // STRING
@@ -56,9 +50,8 @@ at least one(1) of the following fields is required:
 }
 ```
 
-Update a review for a snack
 **PATCH /api/snacks/:id/reviews/:id**
-at least one(1) of the following fields is required:
+- at least one(1) of the following fields in body is required:
 ```
 {
 	title,          // STRING
@@ -67,8 +60,6 @@ at least one(1) of the following fields is required:
 }
 ```
 
-Delete a snack and all related reviews
 **DELETE /api/snacks/:id**
 
-Delete a review
 **DELETE /api/snacks/:id/reviews/:id**
