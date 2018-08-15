@@ -7,7 +7,7 @@
     "dev": "nodemon app.js",
     "start": "node app.js",
     "knex": "knex",
-    "setup": "npm i && echo \"SECRET_KEY='secret' \nDATABASE_NAME='galvanizesnacks'\" >> .env && createdb galvanizesnacks && npm run reboot && npm run dev",
+    "setup": "npm i && echo  > .env && echo \"SECRET_KEY='secret' \nDATABASE_NAME='galvanizesnacks'\" >> .env && dropdb galvanizesnacks && createdb galvanizesnacks && npm run reboot && npm run dev",
     "reboot": "npm run knex migrate:rollback && npm run knex migrate:latest && npm run knex seed:run"
   },
   "repository": {
