@@ -12,7 +12,7 @@ app.disable('x-powered-by')
 app.use(morgan('dev'))
 app.use(bodyParser.json())
 
-app.use('/snacks', SnacksRoutes)
+app.use('/api/snacks', SnacksRoutes)
 
 app.use((req, res) => {
   const status = 404
