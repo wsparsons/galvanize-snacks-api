@@ -1,17 +1,17 @@
 const express = require('express')
 const router = express.Router()
-const { SnacksController, ReviewsController } = require('../controllers')
+const { snacksController, reviewsController } = require('../controllers')
 
 
-router.get('/', SnacksController.index) 
+router.get('/', snacksController.index) 
 
-router.get('/:id', SnacksController.show)
+router.get('/:id', snacksController.show)
 
-router.post('/', SnacksController.create)
+router.post('/', snacksController.create)
 
-router.patch('/:id', SnacksController.update)
+router.patch('/:id', snacksController.update)
 
-router.delete('/:id', SnacksController.destroy)
+router.delete('/:id', snacksController.destroy)
 
 
 module.exports = router

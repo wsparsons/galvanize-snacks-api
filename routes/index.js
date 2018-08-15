@@ -1,4 +1,4 @@
 module.exports = {
-    SnacksRoutes: require('./snacks')
+    snacksRoutes: require('./snacks')
   }
   

@@ -1,4 +1,4 @@
 module.exports = {
-    SnacksController: require('./snacks')
+    snacksController: require('./snacks')
   }
   

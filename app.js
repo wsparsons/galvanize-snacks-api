@@ -4,7 +4,7 @@ const app = express()
 const morgan = require('morgan')
 const bodyParser = require('body-parser')
 const port = process.env.PORT || 3000
-const { SnacksRoutes } = require('./routes')
+const { snacksRoutes } = require('./routes')
 const processErrorMessage = require('./middleware/errors')
 require('dotenv').config()
 
@@ -12,7 +12,7 @@ app.disable('x-powered-by')
 app.use(morgan('dev'))
 app.use(bodyParser.json())
 
-app.use('/api/snacks', SnacksRoutes)
+app.use('/api/snacks', snacksRoutes)
 
 app.use((req, res) => {
   const status = 404
