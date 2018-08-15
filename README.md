@@ -12,15 +12,15 @@
 
 ## Routes
 
-Get ALL snacks
+- Get ALL snacks
 **GET /api/snacks**
 
-Get ONE snack via ID will all related reviews
+- Get ONE snack via ID will all related reviews
 **GET /api/snacks/:id**
 
 Create a snack 
 **POST /api/snacks**
-required fields:
+- required fields:
 ```
 {
     name,           // STRING
@@ -34,8 +34,7 @@ required fields:
 Create a review for a snack
 
 **POST /api/snacks/:id/reviews**
-
-required fields:
+- required fields:
 ```
 {
 	title,          // STRING
