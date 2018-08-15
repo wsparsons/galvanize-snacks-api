@@ -26,4 +26,4 @@ function destroy(req, res, next) {
 }
 
 
-module.exports = { index, show, create, update, destroy }
+module.exports = { show, create, update, destroy }
