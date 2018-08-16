@@ -12,7 +12,15 @@ function create(req, res, next) {
 }
 
 function update(req, res, next) {
-	review.update(req.params.id, req.params.revId, req.body)
+	snack.getSnackById(req.params.id)
+		.then(foundSnack => {
+			if (!foundSnack) throw new Error('snacknotfound')
+			return review.getReviewById(req.params.revId)
+		})
+		.then(foundReview => {
+			if (!foundReview) throw new Error('reviewnotfound')
+			return review.update(req.params.id, req.params.revId, req.body)
+		})
 		.then(reviews => res.status(200).json({ data: reviews }))    
 		.catch(err => next(err)) 
 }

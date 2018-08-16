@@ -6,17 +6,27 @@ function getSnackReviews(id) {
 		.where({ 'snack_id': id })
 }
 
-function create(id, { title, text, rating }) {
+function getReviewById(id) {
+	return knex('reviews')
+		.where({ id })
+		.first()
+}
+
+function create(snack_id, { title, text, rating }) {
 	if(!title|| typeof title !== 'string') throw new Error('titleRequired')
 	if(!text || typeof text !== 'string') throw new Error('textRequired')
 	if(!rating) throw new Error('ratingRequired')
 	return knex('reviews')
-		.insert({ id, title, text, rating })
+		.insert({ snack_id, title, text, rating })
 		.returning(['*'])
 }
 
-function update() {
-
+function update(snack_id, id, body) {
+	if (!body.title && !body.text && !body.rating) throw new Error('aReviewFieldRequired')
+	return knex('reviews')
+		.where({ id })
+		.update( body )
+		.returning(['*'])  
 }
 
 function destroy() {
@@ -24,4 +34,4 @@ function destroy() {
 }
 
 
-module.exports = { getSnackReviews, create, update, destroy }
+module.exports = { getSnackReviews, getReviewById, create, update, destroy }

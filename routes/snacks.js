@@ -13,7 +13,7 @@ router.post('/:id/reviews', reviewsController.create)
 
 router.patch('/:id', snacksController.update)
 
-// router.patch('/:id/reviews/:revId', reviewsController.update)
+router.patch('/:id/reviews/:revId', reviewsController.update)
 
 router.delete('/:id', snacksController.destroy)
 
