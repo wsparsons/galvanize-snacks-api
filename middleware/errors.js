@@ -8,7 +8,10 @@ function processErrorMessage(err) {
         case 'snackImgWrong': return { status: 400, message: 'Snack "img" must be a String and is required'}
         case 'snackPerishableWrong': return { status: 400, message: 'Snack "is_perishable" must be a Boolean and is required'}
         case 'aFieldRequired': return { status: 400, message: 'At lease one(1) of the following fields is required: "name", "description", "price", "img", or "is_perishable"'}
-        
+        case 'titleRequired': return { status: 400, message: 'Review "title" must be a String and is required' }
+        case 'textRequired': return { status: 400, message: 'Review "text" must be a String and is required' }
+        case 'ratingRequired': return { status: 400, message: 'Review "rating" must be an integer and is required' }
+
         default:
           return { status: 500, message: 'An internal server error has occurred.' }
       }
