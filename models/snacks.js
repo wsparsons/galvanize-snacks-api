@@ -9,6 +9,10 @@ function getSnackById(id) {
 	return knex('snacks')
 		.where({ id })
 		.first()
+		.then(snack => {
+			if (!snack) throw new Error('snacknotfound')
+			return snack
+		})
 }
 
 function create({ name, description, price, img, is_perishable }){

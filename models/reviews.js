@@ -10,6 +10,10 @@ function getReviewById(id) {
 	return knex('reviews')
 		.where({ id })
 		.first()
+		.then(foundReview => {
+			if (!foundReview) throw new Error('reviewnotfound')
+			return foundReview
+		})
 }
 
 function create(snack_id, { title, text, rating }) {
