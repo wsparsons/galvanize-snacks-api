@@ -10,7 +10,7 @@ function getSnackById(id) {
 		.where({ id })
 		.first()
 		.then(snack => {
-			if (!snack) throw new Error('snacknotfound')
+			if (!snack) throw new Error('snackNotFound')
 			return snack
 		})
 }

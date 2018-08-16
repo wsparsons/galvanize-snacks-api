@@ -11,7 +11,7 @@ function getReviewById(id) {
 		.where({ id })
 		.first()
 		.then(foundReview => {
-			if (!foundReview) throw new Error('reviewnotfound')
+			if (!foundReview) throw new Error('reviewNotFound')
 			return foundReview
 		})
 }
