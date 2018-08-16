@@ -10,11 +10,8 @@ function index(req, res, next) {
 function show(req, res, next) {
 	let data
 	snack.getSnackById(req.params.id)
-		.then(found => {
-			if (!found) throw new Error('snacknotfound')
-			data = found
-			return review.getSnackReviews(req.params.id)
-		})
+		.then(found => data = found)
+		.then(() => review.getSnackReviews(req.params.id))
 		.then(reviews => data.reviews = reviews)
 		.then(() => res.status(201).json({ data }))
 		.catch(err => next(err))
@@ -28,20 +25,14 @@ function create(req, res, next) {
 
 function update(req, res, next) {
 	snack.getSnackById(req.params.id)
-		.then(found => {
-			if (!found) throw new Error('snacknotfound')
-			return snack.update(req.params.id, req.body)
-		})
+		.then(() => snack.update(req.params.id, req.body))
 		.then(snack => res.status(200).json({ data: snack }))    
 		.catch(err => next(err)) 
 }
 
 function destroy(req, res, next) {
   	snack.getSnackById(req.params.id)
-		.then(found => {
-			if (!found) throw new Error('snacknotfound')     
-			return snack.destroy(req.params.id)
-		})
+	  	.then(() => snack.update(req.params.id, req.body))
 		.then(snack => res.status(202).json({ data: snack }))    
 		.catch(err => next(err)) 
 }
