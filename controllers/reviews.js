@@ -1,29 +1,27 @@
-const { reviews } = require('../models')
+const { snack, review } = require('../models')
 
-
-function show(req, res, next) {
-  reviews.show(req.params.id)
-    .then(reviews => res.status(201).json({ data: reviews }))
-    .catch(err => next(err))
-}
 
 function create(req, res, next) {
-  reviews.create(req.body)
-    .then(reviews => res.status(201).json({ data: reviews }))    
-    .catch(err => next(err))    
+	snack.getSnackById(req.params.id)
+		.then(found => {
+			if (!found) throw new Error('snacknotfound')
+			return review.create(req.params.id, req.body)
+		})	
+		.then(data => res.status(201).json({ data }))    
+		.catch(err => next(err))    
 }
 
 function update(req, res, next) {
-  reviews.update(req.params.id, req.body)
-    .then(reviews => res.status(200).json({ data: reviews }))    
-    .catch(err => next(err)) 
+	review.update(req.params.id, req.params.revId, req.body)
+		.then(reviews => res.status(200).json({ data: reviews }))    
+		.catch(err => next(err)) 
 }
 
 function destroy(req, res, next) {
-  reviews.destroy(req.params.id)
-    .then(reviews => res.status(202).json({ data: reviews }))    
-    .catch(err => next(err)) 
+	review.destroy(req.params.id, req.params.revId)
+		.then(reviews => res.status(202).json({ data: reviews }))    
+		.catch(err => next(err)) 
 }
 
 
-module.exports = { show, create, update, destroy }
+module.exports = { create, update, destroy }
