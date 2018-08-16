@@ -12,6 +12,7 @@ function processErrorMessage(err) {
         case 'titleRequired': return { status: 400, message: 'Review "title" must be a String and is required' }
         case 'textRequired': return { status: 400, message: 'Review "text" must be a String and is required' }
         case 'ratingRequired': return { status: 400, message: 'Review "rating" must be an integer and is required' }
+        case 'reviewnotfound': return { status: 404, message: 'Review with provided ID is not found' }
 
         default:
           return { status: 500, message: 'An internal server error has occurred.' }
