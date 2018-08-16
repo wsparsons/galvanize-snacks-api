@@ -17,7 +17,7 @@ router.patch('/:id/reviews/:revId', reviewsController.update)
 
 router.delete('/:id', snacksController.destroy)
 
-// router.delete('/:id/reviews/:revId', reviewsController.destroy)
+router.delete('/:id/reviews/:revId', reviewsController.destroy)
 
 
 module.exports = router

@@ -26,7 +26,15 @@ function update(req, res, next) {
 }
 
 function destroy(req, res, next) {
-	review.destroy(req.params.id, req.params.revId)
+	snack.getSnackById(req.params.id)
+		.then(foundSnack => {
+			if (!foundSnack) throw new Error('snacknotfound')
+			return review.getReviewById(req.params.revId)
+		})
+		.then(foundReview => {
+			if (!foundReview) throw new Error('reviewnotfound')
+			return review.destroy(req.params.id, req.params.revId)
+		})
 		.then(reviews => res.status(202).json({ data: reviews }))    
 		.catch(err => next(err)) 
 }

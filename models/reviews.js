@@ -29,8 +29,11 @@ function update(snack_id, id, body) {
 		.returning(['*'])  
 }
 
-function destroy() {
-
+function destroy(snack_id, id) {
+	return knex('reviews')
+		.where({ snack_id, id })
+		.del()
+		.returning(['*'])
 }
 
 
