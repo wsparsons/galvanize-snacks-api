@@ -19,7 +19,7 @@ function getReviewById(id) {
 function create(snack_id, { title, text, rating }) {
 	if(!title|| typeof title !== 'string') throw new Error('titleRequired')
 	if(!text || typeof text !== 'string') throw new Error('textRequired')
-	if(!rating) throw new Error('ratingRequired')
+	if(!rating || typeof rating !== 'number' || !Number.isFinite(rating) || !Number.isInteger(rating)) throw new Error('ratingRequired')
 	return knex('reviews')
 		.insert({ snack_id, title, text, rating })
 		.returning(['*'])
