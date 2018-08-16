@@ -11,7 +11,7 @@ function processErrorMessage(err) {
         case 'aReviewFieldRequired': return { status: 400, message: 'At lease one(1) of the following fields is required: "title", "text", "rating" '}        
         case 'titleRequired': return { status: 400, message: 'Review "title" must be a String and is required' }
         case 'textRequired': return { status: 400, message: 'Review "text" must be a String and is required' }
-        case 'ratingRequired': return { status: 400, message: 'Review "rating" must be an integer and is required' }
+        case 'ratingRequired': return { status: 400, message: 'Review "rating" must be an Integer (whole number, no Floats between 1 and 5) and is required' }
         case 'reviewnotfound': return { status: 404, message: 'Review with provided ID is not found' }
 
         default:
