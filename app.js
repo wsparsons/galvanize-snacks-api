@@ -24,8 +24,7 @@ app.use((req, res) => {
 app.use((err, req, res, next) => {
   err = processErrorMessage(err)
   if (process.env.NODE_ENV !== 'test') console.error(err)
-  const status = err.status || 500
-  const message = err.message || 'Internal Error.'
+  const { status, message } = err
   res.status(status).json({ status, message })
 })
 
