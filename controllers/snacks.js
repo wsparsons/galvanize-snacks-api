@@ -27,21 +27,21 @@ function show(req, res, next) {
 
 function create(req, res, next) {
 	snack.create(req.body)
-		.then(snack => res.status(201).json({ data: snack }))    
+		.then(data => res.status(201).json({ data }))    
 		.catch(err => next(err))    
 }
 
 function update(req, res, next) {
 	snack.getSnackById(req.params.id)
 		.then(() => snack.update(req.params.id, req.body))
-		.then(snack => res.status(200).json({ data: snack }))    
+		.then(data => res.status(200).json({ data }))    
 		.catch(err => next(err)) 
 }
 
 function destroy(req, res, next) {
   	snack.getSnackById(req.params.id)
 	  	.then(() => snack.update(req.params.id, req.body))
-		.then(snack => res.status(202).json({ data: snack }))    
+		.then(data => res.status(202).json({ data }))    
 		.catch(err => next(err)) 
 }
 
