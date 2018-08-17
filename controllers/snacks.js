@@ -3,7 +3,15 @@ const { snack, review } = require('../models')
  
 function index(req, res, next) {
 	snack.index()
-		.then(snacks => res.status(201).json({ data: snacks }))
+		.then(snacks => {
+			let promises = snacks.map( async (snack) => {
+				let reviews = await review.getSnackReviews(snack.id)
+				snack.reviews = reviews
+				return snack
+			})
+			return Promise.all(promises)
+		})
+		.then(data => res.status(201).json({ data }))
 		.catch(err => next(err))
 }
 
