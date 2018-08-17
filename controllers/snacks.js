@@ -25,6 +25,12 @@ function show(req, res, next) {
 		.catch(err => next(err))
 }
 
+function featured(req, res, next) {
+	snack.getFeatured()
+		.then(data => res.status(201).json({ data }))
+		.catch(err => next(err))		
+}
+
 function create(req, res, next) {
 	snack.create(req.body)
 		.then(data => res.status(201).json({ data }))    
@@ -46,4 +52,4 @@ function destroy(req, res, next) {
 }
 
 
-module.exports = { index, show, create, update, destroy }
+module.exports = { index, show, featured, create, update, destroy }

@@ -15,6 +15,14 @@ function getSnackById(id) {
 		})
 }
 
+function getFeatured() {
+	return knex('snacks')
+		.then(snacks => {
+			let ids = [ Math.ceil(Math.random() * snacks.length), Math.ceil(Math.random() * snacks.length), Math.floor(Math.random() * snacks.length) ]
+			return [ snacks[ids[0]], snacks[ids[1]], snacks[ids[2]] ]
+		})
+}
+
 function create({ name, description, price, img, is_perishable }){
 	if(!name|| typeof name !== 'string') throw new Error('snackNameWrong')
 	if(!description || typeof description !== 'string') throw new Error('snackDescriptionWrong')
@@ -42,4 +50,4 @@ function destroy(id) {
 }
 
 
-module.exports = { index, create, update, destroy, getSnackById } 
+module.exports = { index, create, update, destroy, getSnackById, getFeatured } 

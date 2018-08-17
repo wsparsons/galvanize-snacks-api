@@ -3,6 +3,8 @@ const router = express.Router()
 const { snacksController, reviewsController } = require('../controllers')
 
 
+router.get('/featured', snacksController.featured)
+
 router.get('/', snacksController.index) 
 
 router.get('/:id', snacksController.show)
