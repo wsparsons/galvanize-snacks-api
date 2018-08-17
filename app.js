@@ -8,6 +8,7 @@ const { snacksRoutes } = require('./routes')
 const processErrorMessage = require('./middleware/errors')
 require('dotenv').config()
 
+app.use(cors())
 app.disable('x-powered-by')
 app.use(morgan('dev'))
 app.use(bodyParser.json())
