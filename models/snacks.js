@@ -24,18 +24,19 @@ function getFeatured() {
 }
 
 function create({ name, description, price, img, is_perishable }){
+	console.log("is_perishable: ",is_perishable, " && it is type: ", typeof is_perishable)
 	if(!name|| typeof name !== 'string') throw new Error('snackNameWrong')
 	if(!description || typeof description !== 'string') throw new Error('snackDescriptionWrong')
 	if(!price) throw new Error('snackPriceWrong')
 	if(!img || typeof img !== 'string') throw new Error('snackImgWrong')
-	if(!is_perishable || typeof is_perishable !== 'boolean' ) throw new Error('snackPerishableWrong')
+	if(typeof is_perishable !== 'boolean' ) throw new Error('snackPerishableWrong')
 	return knex('snacks')
 		.insert({ name, description, price, img, is_perishable })
 		.returning(['*'])
 }
 
 function update(id, body) {
-	if (!body.name && !body.description && !body.price && !body.img && !body.is_perishable) throw new Error('aFieldRequired')
+	if (!body.name && !body.description && !body.price && !body.img && body.is_perishable === undefined) throw new Error('aFieldRequired')
 	return knex('snacks')
 		.where({ id })
 		.update( body )
