@@ -24,7 +24,6 @@ function getFeatured() {
 }
 
 function create({ name, description, price, img, is_perishable }){
-	console.log("is_perishable: ",is_perishable, " && it is type: ", typeof is_perishable)
 	if(!name|| typeof name !== 'string') throw new Error('snackNameWrong')
 	if(!description || typeof description !== 'string') throw new Error('snackDescriptionWrong')
 	if(!price) throw new Error('snackPriceWrong')
