@@ -18,24 +18,22 @@ function getSnackById(id) {
 function getFeatured() {
 	return knex('snacks')
 		.then(snacks => {
-			let ids = [ Math.ceil(Math.random() * snacks.length), Math.ceil(Math.random() * snacks.length), Math.floor(Math.random() * snacks.length) ]
+			const ids = [ generateRandomId(snacks.length), generateRandomId(snacks.length), generateRandomId(snacks.length) ]
 			return [ snacks[ids[0]], snacks[ids[1]], snacks[ids[2]] ]
 		})
 }
 
-function create({ name, description, price, img, is_perishable }){
-	if(!name|| typeof name !== 'string') throw new Error('snackNameWrong')
-	if(!description || typeof description !== 'string') throw new Error('snackDescriptionWrong')
-	if(!price) throw new Error('snackPriceWrong')
-	if(!img || typeof img !== 'string') throw new Error('snackImgWrong')
-	if(typeof is_perishable !== 'boolean' ) throw new Error('snackPerishableWrong')
+function generateRandomId(snackQty) {
+	return Math.ceil(Math.random() * snackQty)
+}
+
+function create(body){
 	return knex('snacks')
-		.insert({ name, description, price, img, is_perishable })
+		.insert( body )
 		.returning(['*'])
 }
 
 function update(id, body) {
-	if (!body.name && !body.description && !body.price && !body.img && body.is_perishable === undefined) throw new Error('aFieldRequired')
 	return knex('snacks')
 		.where({ id })
 		.update( body )

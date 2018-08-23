@@ -16,17 +16,13 @@ function getReviewById(id) {
 		})
 }
 
-function create(snack_id, { title, text, rating }) {
-	if(!title|| typeof title !== 'string') throw new Error('titleRequired')
-	if(!text || typeof text !== 'string') throw new Error('textRequired')
-	if(!rating || typeof rating !== 'number' || !Number.isFinite(rating) || !Number.isInteger(rating)) throw new Error('ratingRequired')
+function create(snack_id, body) {
 	return knex('reviews')
-		.insert({ snack_id, title, text, rating })
+		.insert({snack_id, ...body})
 		.returning(['*'])
 }
 
 function update(snack_id, id, body) {
-	if (!body.title && !body.text && !body.rating) throw new Error('aReviewFieldRequired')
 	return knex('reviews')
 		.where({ id })
 		.update( body )
