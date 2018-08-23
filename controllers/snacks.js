@@ -1,9 +1,11 @@
 const { snack, review } = require('../models')
+const inspect = require('../middleware/bodyInspect')
 
  
 function index(req, res, next) {
 	snack.index()
 		.then(snacks => {
+			// convert to promises instead of async/await
 			let promises = snacks.map( async (snack) => {
 				let reviews = await review.getSnackReviews(snack.id)
 				snack.reviews = reviews
@@ -15,7 +17,7 @@ function index(req, res, next) {
 		.catch(err => next(err))
 }
 
-function show(req, res, next) {
+async function show(req, res, next) {
 	let data
 	snack.getSnackById(req.params.id)
 		.then(found => data = found)
@@ -32,13 +34,15 @@ function featured(req, res, next) {
 }
 
 function create(req, res, next) {
-	snack.create(req.body)
+	inspect.snackBodyInspect(req.body, "create")
+		.then(() => snack.create(req.body))
 		.then(data => res.status(201).json({ data }))    
 		.catch(err => next(err))    
 }
 
 function update(req, res, next) {
-	snack.getSnackById(req.params.id)
+	inspect.snackBodyInspect(req.body, "update")
+		.then(() => snack.getSnackById(req.params.id))
 		.then(() => snack.update(req.params.id, req.body))
 		.then(data => res.status(200).json({ data }))    
 		.catch(err => next(err)) 

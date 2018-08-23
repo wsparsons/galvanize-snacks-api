@@ -1,15 +1,18 @@
 const { snack, review } = require('../models')
+const inspect = require('../middleware/bodyInspect')
 
 
 function create(req, res, next) {
-	snack.getSnackById(req.params.id)	
+	inspect.reviewBodyInspect(req.body, "create")
+		.then(() => snack.getSnackById(req.params.id))
 		.then(() => review.create(req.params.id, req.body))
 		.then(data => res.status(201).json({ data }))    
 		.catch(err => next(err))    
 }
 
 function update(req, res, next) {
-	snack.getSnackById(req.params.id)
+	inspect.reviewBodyInspect(req.body, "update")	
+		.then(() => snack.getSnackById(req.params.id))
 		.then(() => review.getReviewById(req.params.revId))
 		.then(() => review.update(req.params.id, req.params.revId, req.body))
 		.then(reviews => res.status(200).json({ data: reviews }))    
