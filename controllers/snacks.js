@@ -5,6 +5,8 @@ const inspect = require('../middleware/bodyInspect')
 function index(req, res, next) {
 	snack.index()
 		.then(snacks => {
+			// map snacks to get array of ids.
+			// 
 			// convert to promises instead of async/await
 			let promises = snacks.map( async (snack) => {
 				let reviews = await review.getSnackReviews(snack.id)
