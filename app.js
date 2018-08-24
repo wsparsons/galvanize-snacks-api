@@ -6,6 +6,8 @@ const bodyParser = require('body-parser')
 const port = process.env.PORT || 3000
 const { snacksRoutes, reviewsRoutes } = require('./routes')
 const processErrorMessage = require('./middleware/errors')
+
+
 require('dotenv').config()
 
 app.use(cors())
@@ -30,5 +32,6 @@ app.use((err, req, res, next) => {
 })
 
 app.listen(port, () => console.log(`On port: ${port}`))
+
 
 module.exports = app
