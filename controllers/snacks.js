@@ -1,17 +1,16 @@
 const { snack, review } = require('../models')
-const inspect = require('../middleware/bodyInspect')
+const { isValidSnackCreate, isValidSnackPatch } = require('../middleware/bodyInspect')
 
  
 function index(req, res, next) {
 	snack.index()
 		.then(snacks => {
-			// map snacks to get array of ids.
-			// 
-			// convert to promises instead of async/await
-			let promises = snacks.map( async (snack) => {
-				let reviews = await review.getSnackReviews(snack.id)
-				snack.reviews = reviews
-				return snack
+			let promises = snacks.map((snack) => {
+				return review.getSnackReviews(snack.id)
+					.then((reviews) => {
+						snack.reviews = reviews
+						return snack
+					})
 			})
 			return Promise.all(promises)
 		})
@@ -36,14 +35,14 @@ function featured(req, res, next) {
 }
 
 function create(req, res, next) {
-	inspect.snackBodyInspect(req.body, "create")
+	isValidSnackCreate(req.body)
 		.then(() => snack.create(req.body))
 		.then(data => res.status(201).json({ data }))    
 		.catch(err => next(err))    
 }
 
 function update(req, res, next) {
-	inspect.snackBodyInspect(req.body, "update")
+	isValidSnackPatch(req.body)
 		.then(() => snack.getSnackById(req.params.id))
 		.then(() => snack.update(req.params.id, req.body))
 		.then(data => res.status(200).json({ data }))    
