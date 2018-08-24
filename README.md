@@ -14,6 +14,8 @@
 
 **GET /api/snacks**
 
+**GET /api/snacks/featured**
+
 **GET /api/snacks/:id**
 
 **POST /api/snacks**
